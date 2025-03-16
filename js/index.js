@@ -30,6 +30,8 @@ console.log(`Радиус: ${circle.radius}`);
 console.log(`Диаметр: ${circle.diameter}`);
 console.log(`Площадь: ${circle.area()}`);
 console.log(`Длина окружности: ${circle.circumference()}`);
+
+// в процессе
 // TASK 2
 // TASK 3
 // TASK 4
