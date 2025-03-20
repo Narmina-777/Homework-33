@@ -68,7 +68,6 @@ console.log("code ", code);
 const object = {
   name: "test",
 };
-
 // TASK 3
 class CssClass {
   constructor(className) {
@@ -96,10 +95,52 @@ class CssClass {
   }
 }
 
-const myClass = new CssClass("div");
-myClass.setStyle("color", "blue");
-myClass.setStyle("font-size", "14px");
+const myClass = new CssClass("my-class");
+myClass.setStyle("color", "red");
+myClass.setStyle("font-size", "16px");
 console.log(myClass.getCss());
 
 myClass.removeStyle("color");
 console.log(myClass.getCss());
+
+// TASK 4
+class HtmlBlock {
+  constructor() {
+    this.styles = [];
+    this.rootElement = null;
+  }
+
+  addCssClass(cssClass) {
+    this.styles.push(cssClass);
+  }
+
+  setRootElement(element) {
+    this.rootElement = element;
+  }
+
+  getCode() {
+    if (!this.rootElement) {
+      return "<Нет корневого элемента>";
+    }
+    let cssCode = this.styles.map((cssClass) => cssClass.getCss()).join("");
+    let htmlCode = this.rootElement.getHtml();
+    return `<style>${cssCode}</style>${htmlCode}`;
+  }
+}
+const wrapperClass = new CssClass("wrapper");
+wrapperClass.setStyle("width", "300px");
+wrapperClass.setStyle("border", "1px solid black");
+wrapperClass.setStyle("padding", "10px");
+
+const headerClass = new CssClass("header");
+headerClass.setStyle("color", "blue");
+headerClass.setStyle("font-size", "20px");
+
+const wrapper = new HtmlElement("div");
+wrapper.setAttribute("class", "wrapper");
+
+const block = new HtmlBlock();
+block.addCssClass(wrapperClass);
+block.addCssClass(headerClass);
+block.setRootElement(wrapper);
+console.log(block.getCode());
